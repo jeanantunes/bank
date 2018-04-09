@@ -5,7 +5,6 @@ import com.hub.fintech.bank.repository.PessoaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,7 +30,7 @@ public class PessoaController {
     // @RequestBody annotation is used to bind the request body with a method parameter.
     // @Valid annotation makes sure that the request body is valid. Remember, we had marked Note’s title and content
     // Save
-    @PutMapping(value = "/pessoa/save/{pessoa}", produces = "application/json")
+    @PutMapping(value = "/pessoa/save/{pessoa}", produces = "application/text")
     public @ResponseBody
     String savePessoa(@Valid @RequestBody Pessoa pessoa) {
         pessoaRepository.save(pessoa);
@@ -60,13 +59,13 @@ public class PessoaController {
 
     // Delete
     @DeleteMapping("/pessoa/delete/{id}")
-    public ResponseEntity<?> deletePessoa(@PathVariable(value = "id") Long id) {
+    public String deletePessoa(@PathVariable(value = "id") Long id) {
         Pessoa pessoa = pessoaRepository.findById(id);
         if (pessoa != null) {
             pessoaRepository.delete(id);
+            return "DELETE realizado com Sucesso.";
         }else {
-            logger.warn("Pessoa não localizada");
+            return "Pessoa não localizada";
         }
-        return ResponseEntity.ok().build();
     }
 }
