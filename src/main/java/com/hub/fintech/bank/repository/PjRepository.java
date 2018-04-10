@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @Copyright JotaIT Services
  */
 
-@Repository // This tells Spring to bootstrap the repository during component scan.
+@Repository
 public interface PjRepository extends JpaRepository<Pj, Long> {
 
     Pj findById(Long id);

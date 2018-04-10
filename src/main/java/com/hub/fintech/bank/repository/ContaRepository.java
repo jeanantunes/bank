@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @Copyright JotaIT Services
  */
 
-@Repository // This tells Spring to bootstrap the repository during component scan.
+@Repository
 public interface ContaRepository extends JpaRepository<Conta, Long> {
 
     Conta findById(Long id);
