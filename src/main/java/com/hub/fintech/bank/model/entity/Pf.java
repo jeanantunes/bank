@@ -8,18 +8,15 @@ import java.util.Date;
  * @Copyright JotaIT Services
  */
 
-// https://www.callicoder.com/spring-boot-rest-api-tutorial-with-mysql-jpa-hibernate/
-
-@Entity // It is used to mark the class as a persistent Java class.
-@Table(name = "PF") // Annotation is used to provide the details of the table that this entity will be mapped to.
+@Entity
+@Table(name = "PF")
 public class Pf implements Serializable {
 
-    @Id // Annotation is used to define the primary key.
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // annotation is used to define the primary key generation strategy
     private Long id;
 
-    @Column(name = "NOME") // Annotation with the same name not necessary
+    @Column(name = "NOME")
     private String nome;
 
     @Column(name = "CPF")

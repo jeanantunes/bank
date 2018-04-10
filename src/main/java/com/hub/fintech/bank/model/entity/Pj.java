@@ -7,18 +7,15 @@ import java.io.Serializable;
  * @Copyright JotaIT Services
  */
 
-// https://www.callicoder.com/spring-boot-rest-api-tutorial-with-mysql-jpa-hibernate/
-
-@Entity // It is used to mark the class as a persistent Java class.
-@Table(name = "PJ") // Annotation is used to provide the details of the table that this entity will be mapped to.
+@Entity
+@Table(name = "PJ")
 public class Pj implements Serializable {
 
-    @Id // Annotation is used to define the primary key.
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // annotation is used to define the primary key generation strategy
     private Long id;
 
-    @Column(name = "RAZAO_SOCIAL") // Annotation with the same name not necessary
+    @Column(name = "RAZAO_SOCIAL")
     private String razaoSocial;
 
     @Column(name = "NOME_FANTASIA")
