@@ -1,7 +1,12 @@
 package com.hub.fintech.bank.controller;
 
 import com.hub.fintech.bank.model.entity.Pessoa;
+import com.hub.fintech.bank.model.entity.Pf;
+import com.hub.fintech.bank.model.entity.Pj;
+import com.hub.fintech.bank.model.enums.TipoPessoaEnum;
 import com.hub.fintech.bank.repository.PessoaRepository;
+import com.hub.fintech.bank.repository.PfRepository;
+import com.hub.fintech.bank.repository.PjRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,19 +48,21 @@ public class PessoaController {
 
     // @PathVariable annotation, as the name suggests, is used to bind a path variable with a method parameter.
     @PostMapping(value = "/pessoa/find/{id}", produces = "application/json")
-    public @ResponseBody Pessoa getPessoaById(@PathVariable(value = "id") Long id) {
+    public @ResponseBody
+    Pessoa getPessoaById(@PathVariable(value = "id") Long id) {
         return pessoaRepository.findById(id);
     }
 
     // Update
     @PutMapping(value = "/pessoa/update/{id}", produces = "application/json")
-    public @ResponseBody Pessoa updatePessoa(@PathVariable(value = "id") Long id,
-                                             @Valid @RequestBody Pessoa pessoaDetails) {
+    public @ResponseBody
+    Pessoa updatePessoa(@PathVariable(value = "id") Long id,
+                        @Valid @RequestBody Pessoa pessoaDetails) {
 
         Pessoa pessoa = pessoaRepository.findById(id);
-        if (pessoa != null){
-        pessoaRepository.save(pessoaDetails);
-        }else {
+        if (pessoa != null) {
+            pessoaRepository.save(pessoaDetails);
+        } else {
             System.out.println("Pessoa não encontrada");
         }
         return pessoaDetails;
@@ -68,7 +75,7 @@ public class PessoaController {
         if (pessoa != null) {
             pessoaRepository.delete(id);
             return "DELETE realizado com Sucesso.";
-        }else {
+        } else {
             return "Pessoa não localizada";
         }
     }

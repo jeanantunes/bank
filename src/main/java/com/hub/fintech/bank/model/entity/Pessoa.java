@@ -13,14 +13,16 @@ import java.io.Serializable;
 
 @Entity // It is used to mark the class as a persistent Java class.
 @Table(name = "PESSOA") // Annotation is used to provide the details of the table that this entity will be mapped to.
-public class Pessoa implements Serializable {
+public class Pessoa extends Conta implements Serializable {
 
     @Id // Annotation is used to define the primary key.
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // annotation is used to define the primary key generation strategy
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // annotation is used to define the primary key generation strategy
     private Long id;
 
-    @Column(name = "TIPO_PESSOA") // annotation is used to define the properties of the column that will be mapped to the annotated field
-    private TipoPessoaEnum pessoa;
+    @Column(name = "TIPO_PESSOA")
+    // annotation is used to define the properties of the column that will be mapped to the annotated field
+    private TipoPessoaEnum pessoaTipo;
 
     @OneToOne
     @JoinColumn(name = "CPF")
@@ -38,12 +40,12 @@ public class Pessoa implements Serializable {
         this.id = id;
     }
 
-    public TipoPessoaEnum getPessoa() {
-        return pessoa;
+    public TipoPessoaEnum getPessoaTipo() {
+        return pessoaTipo;
     }
 
-    public void setPessoa(TipoPessoaEnum pessoa) {
-        this.pessoa = pessoa;
+    public void setPessoaTipo(TipoPessoaEnum pessoaTipo) {
+        this.pessoaTipo = pessoaTipo;
     }
 
     public Pf getCpf() {

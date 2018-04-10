@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public interface PessoaService extends IService<Pessoa> {
 
-    Conta save(Conta conta);
+    Pessoa save(Pessoa pessoa);
 
-    List<Conta> findAll();
+    List<Pessoa> findAll();
 }
