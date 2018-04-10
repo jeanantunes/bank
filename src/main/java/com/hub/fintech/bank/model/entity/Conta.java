@@ -32,6 +32,10 @@ public class Conta implements Serializable {
     @Column(name = "STATUS")
     private StatusEnum status;
 
+    @OneToOne
+    @JoinColumn(name = "PESSOA_ID")
+    private Pessoa pessoaId;
+
     public Long getId() {
         return id;
     }
@@ -70,5 +74,13 @@ public class Conta implements Serializable {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    public Pessoa getPessoaId() {
+        return pessoaId;
+    }
+
+    public void setPessoaId(Pessoa pessoaId) {
+        this.pessoaId = pessoaId;
     }
 }

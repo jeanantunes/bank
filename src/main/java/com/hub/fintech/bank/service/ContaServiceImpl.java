@@ -8,7 +8,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * @Copyright JotaIT Services
+ */
+
 // https://stackoverflow.com/questions/41511511/unsatisfieddependencyexception-error-creating-bean-with-name
+
 @Service
 public class ContaServiceImpl implements ContaService {
 

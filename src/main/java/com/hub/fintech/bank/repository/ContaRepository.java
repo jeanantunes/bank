@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @Copyright JotaIT Services
+ */
+
 @Repository // This tells Spring to bootstrap the repository during component scan.
 public interface ContaRepository extends JpaRepository<Conta, Long> {
 

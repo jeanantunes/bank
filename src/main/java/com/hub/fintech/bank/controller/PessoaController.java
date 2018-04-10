@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * @Copyright JotaIT Services
+ */
+
 // https://www.callicoder.com/spring-boot-rest-api-tutorial-with-mysql-jpa-hibernate/
 
 @RestController

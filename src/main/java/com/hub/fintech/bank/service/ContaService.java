@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @Copyright JotaIT Services
+ */
+
 // https://github.com/jeanantunes/healthcare/blob/dev/src/main/java/com/healthcare/service/EmployeeService.java
 @Service
 public interface ContaService extends IService<Conta> {

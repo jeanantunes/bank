@@ -5,6 +5,10 @@ import com.hub.fintech.bank.model.enums.TipoPessoaEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @Copyright JotaIT Services
+ */
+
 @Repository // This tells Spring to bootstrap the repository during component scan.
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 

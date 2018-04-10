@@ -22,6 +22,14 @@ public class Pessoa implements Serializable {
     @Column(name = "TIPO_PESSOA") // annotation is used to define the properties of the column that will be mapped to the annotated field
     private TipoPessoaEnum pessoa;
 
+    @OneToOne
+    @JoinColumn(name = "CPF")
+    private Pf cpf;
+
+    @OneToOne
+    @JoinColumn(name = "CNPJ")
+    private Pj cnpj;
+
     public Long getId() {
         return id;
     }
@@ -36,5 +44,21 @@ public class Pessoa implements Serializable {
 
     public void setPessoa(TipoPessoaEnum pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Pf getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Pf cpf) {
+        this.cpf = cpf;
+    }
+
+    public Pj getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(Pj cnpj) {
+        this.cnpj = cnpj;
     }
 }

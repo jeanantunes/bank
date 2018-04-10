@@ -1,5 +1,9 @@
 package com.hub.fintech.bank.model.enums;
 
+/**
+ * @Copyright JotaIT Services
+ */
+
 public enum TipoPessoaEnum {
 
     CPF("PF"),
