@@ -4,8 +4,6 @@ import com.hub.fintech.bank.model.entity.Conta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * @Copyright JotaIT Services
  */

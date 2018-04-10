@@ -17,32 +17,32 @@ import java.util.List;
 @Service
 public class ContaServiceImpl implements ContaService {
 
-	@Autowired
-	private ContaRepository contaRepository;
+    @Autowired
+    private ContaRepository contaRepository;
 
-	@Transactional
-	public Conta save(Conta conta){
-		return contaRepository.saveAndFlush(conta);
-	}
+    @Transactional
+    public Conta save(Conta conta) {
+        return contaRepository.saveAndFlush(conta);
+    }
 
-	@Override
-	public Conta findById(Long id) {
-		return contaRepository.findById(id);
-	}
+    @Override
+    public Conta findById(Long id) {
+        return contaRepository.findById(id);
+    }
 
-	@Override
-	public String deleteById(Long id) {
-		contaRepository.delete(id);
-		return id + " Deleted";
-	}
+    @Override
+    public String deleteById(Long id) {
+        contaRepository.delete(id);
+        return "Deletado com sucesso.";
+    }
 
-	@Override
-	public List<Conta> findAll() {
-		return contaRepository.findAll();
-	}
+    @Override
+    public List<Conta> findAll() {
+        return contaRepository.findAll();
+    }
 
-	@Override
-	public void delete(Long id) {
-		contaRepository.delete(id);
-	}
+    @Override
+    public void delete(Long id) {
+        contaRepository.delete(id);
+    }
 }

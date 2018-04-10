@@ -82,7 +82,7 @@ public class ContaServiceTest {
     private Pessoa createNewPessoa() {
         Pessoa pessoa = new Pessoa();
         pessoa.setId(id);
-        pessoa.setPessoa(pessoaTipo);
+        pessoa.setPessoaTipo(pessoaTipo);
         return pessoa;
     }
 }

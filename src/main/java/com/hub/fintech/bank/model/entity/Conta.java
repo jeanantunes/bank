@@ -18,7 +18,8 @@ import java.io.Serializable;
 public class Conta implements Serializable {
 
     @Id // Annotation is used to define the primary key.
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // annotation is used to define the primary key generation strategy
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // annotation is used to define the primary key generation strategy
     private Long id;
 
     private String nome;

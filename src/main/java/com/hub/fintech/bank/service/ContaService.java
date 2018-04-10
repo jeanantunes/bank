@@ -13,9 +13,9 @@ import java.util.List;
 @Service
 public interface ContaService extends IService<Conta> {
 
-	Conta save(Conta conta);
+    Conta save(Conta conta);
 
-	List<Conta> findAll();
+    List<Conta> findAll();
 
-	void delete(Long id);
+    void delete(Long id);
 }
