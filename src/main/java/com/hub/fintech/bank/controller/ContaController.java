@@ -14,18 +14,12 @@ import java.util.List;
  * @Copyright JotaIT Services
  */
 
-// https://www.callicoder.com/spring-boot-rest-api-tutorial-with-mysql-jpa-hibernate/
-
 @RestController
-@RequestMapping("/api") // declares that the url for all the apis in this controller will start with /api.
+@RequestMapping("/api")
 public class ContaController {
 
-    private ContaService contaService;
-
     @Autowired
-    public void setContaService(ContaService contaService){
-        this.contaService=contaService;
-    }
+    private ContaService contaService;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -35,8 +29,6 @@ public class ContaController {
         return contaService.findAll();
     }
 
-    // @RequestBody annotation is used to bind the request body with a method parameter.
-    // @Valid annotation makes sure that the request body is valid. Remember, we had marked Note’s title and content
     // Save
     @PutMapping(value = "/conta/save/{conta}", produces = "application/json")
     public @ResponseBody
@@ -45,21 +37,23 @@ public class ContaController {
         return conta;
     }
 
-    // @PathVariable annotation, as the name suggests, is used to bind a path variable with a method parameter.
+    // Find
     @PostMapping(value = "/conta/find/{id}", produces = "application/json")
-    public @ResponseBody Conta getContaById(@PathVariable(value = "id") Long id) {
+    public @ResponseBody
+    Conta getContaById(@PathVariable(value = "id") Long id) {
         return contaService.findById(id);
     }
 
     // Update
     @PutMapping(value = "/conta/update/{id}", produces = "application/json")
-    public @ResponseBody Conta updateConta(@PathVariable(value = "id") Long id,
-                                             @Valid @RequestBody Conta contaDetails) {
+    public @ResponseBody
+    Conta updateConta(@PathVariable(value = "id") Long id,
+                      @Valid @RequestBody Conta contaDetails) {
 
         Conta conta = contaService.findById(id);
-        if (conta != null){
-        contaService.save(contaDetails);
-        }else {
+        if (conta != null) {
+            contaService.save(contaDetails);
+        } else {
             System.out.println("Conta não encontrada");
         }
         return contaDetails;
@@ -72,7 +66,7 @@ public class ContaController {
         if (conta != null) {
             contaService.delete(id);
             return "DELETE realizado com Sucesso.";
-        }else {
+        } else {
             return "Conta não localizada";
         }
     }

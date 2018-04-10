@@ -14,18 +14,12 @@ import java.util.List;
  * @Copyright JotaIT Services
  */
 
-// https://www.callicoder.com/spring-boot-rest-api-tutorial-with-mysql-jpa-hibernate/
-
 @RestController
-@RequestMapping("/api") // declares that the url for all the apis in this controller will start with /api.
+@RequestMapping("/api")
 public class PfController {
 
-    private PfService pfService;
-
     @Autowired
-    public void setPfService(PfService pfService) {
-        this.pfService = pfService;
-    }
+    private PfService pfService;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -35,8 +29,6 @@ public class PfController {
         return pfService.findAll();
     }
 
-    // @RequestBody annotation is used to bind the request body with a method parameter.
-    // @Valid annotation makes sure that the request body is valid. Remember, we had marked Note’s title and content
     // Save
     @PutMapping(value = "/pf/save/{pf}", produces = "application/json")
     public @ResponseBody
@@ -45,7 +37,7 @@ public class PfController {
         return pf;
     }
 
-    // @PathVariable annotation, as the name suggests, is used to bind a path variable with a method parameter.
+    // Find
     @PostMapping(value = "/pf/find/{id}", produces = "application/json")
     public @ResponseBody
     Pf getPfById(@PathVariable(value = "id") Long id) {
