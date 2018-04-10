@@ -13,7 +13,7 @@ mvn spring-boot:run
 Postman
 
 ```
-https://www.getpostman.com/collections/8304865335dd248f839c
+https://www.getpostman.com/collections/f169f14c5f146149b52d
 ```
 
 V1__init.sql
