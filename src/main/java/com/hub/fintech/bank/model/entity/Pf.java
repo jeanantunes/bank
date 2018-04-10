@@ -1,7 +1,5 @@
 package com.hub.fintech.bank.model.entity;
 
-import com.hub.fintech.bank.model.enums.TipoPessoaEnum;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -17,7 +15,8 @@ import java.util.Date;
 public class Pf implements Serializable {
 
     @Id // Annotation is used to define the primary key.
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // annotation is used to define the primary key generation strategy
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // annotation is used to define the primary key generation strategy
     private Long id;
 
     @Column(name = "NOME") // Annotation with the same name not necessary
