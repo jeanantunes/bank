@@ -2,7 +2,6 @@ package com.hub.fintech.bank.model.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @Copyright JotaIT Services
@@ -15,7 +14,8 @@ import java.util.Date;
 public class Pj implements Serializable {
 
     @Id // Annotation is used to define the primary key.
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // annotation is used to define the primary key generation strategy
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // annotation is used to define the primary key generation strategy
     private Long id;
 
     @Column(name = "RAZAO_SOCIAL") // Annotation with the same name not necessary
