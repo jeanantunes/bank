@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "PESSOA")
-public class Pessoa extends Conta implements Serializable {
+public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +20,14 @@ public class Pessoa extends Conta implements Serializable {
     @Column(name = "TIPO_PESSOA")
     private TipoPessoaEnum pessoaTipo;
 
-    @OneToOne
     @JoinColumn(name = "CPF")
-    private Pf cpf;
+    private String cpf;
 
-    @OneToOne
     @JoinColumn(name = "CNPJ")
-    private Pj cnpj;
+    private String cnpj;
+
+    @JoinColumn(name = "CONTA_ID")
+    private Long contaId;
 
     public Long getId() {
         return id;
@@ -44,19 +45,27 @@ public class Pessoa extends Conta implements Serializable {
         this.pessoaTipo = pessoaTipo;
     }
 
-    public Pf getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Pf cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public Pj getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(Pj cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public Long getContaId() {
+        return contaId;
+    }
+
+    public void setContaId(Long contaId) {
+        this.contaId = contaId;
     }
 }

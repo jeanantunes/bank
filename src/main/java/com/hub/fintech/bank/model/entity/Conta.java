@@ -1,5 +1,6 @@
 package com.hub.fintech.bank.model.entity;
 
+import com.hub.fintech.bank.controller.PessoaController;
 import com.hub.fintech.bank.model.enums.StatusEnum;
 import com.hub.fintech.bank.model.enums.TipoContaEnum;
 import com.hub.fintech.bank.model.enums.TipoPessoaEnum;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "CONTA")
-public class Conta implements Serializable {
+public class Conta extends Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +31,8 @@ public class Conta implements Serializable {
     @Column(name = "STATUS")
     private StatusEnum status;
 
-    @OneToOne
     @JoinColumn(name = "PESSOA_ID")
-    private Pessoa pessoaId;
+    private Long pessoaId;
 
     public Long getId() {
         return id;
@@ -74,11 +74,11 @@ public class Conta implements Serializable {
         this.status = status;
     }
 
-    public Pessoa getPessoaId() {
+    public Long getPessoaId() {
         return pessoaId;
     }
 
-    public void setPessoaId(Pessoa pessoaId) {
+    public void setPessoaId(Long pessoaId) {
         this.pessoaId = pessoaId;
     }
 }
