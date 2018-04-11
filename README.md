@@ -15,7 +15,10 @@ Postman
 ```
 https://www.getpostman.com/collections/f169f14c5f146149b52d
 ```
-
+H2 DataBase
+```
+localhost:8080/h2
+```
 V1__init.sql
 
 ```
@@ -92,10 +95,8 @@ ALTER TABLE MOVIMENTACAO
 ALTER TABLE MOVIMENTACAO
   ADD FOREIGN KEY (PESSOA_ID) REFERENCES PESSOA(ID);
 
--- https://www.geradordecpf.org/
 INSERT INTO PESSOA VALUES (1,'PF','22842388828',null);
 INSERT INTO PESSOA VALUES (2,'PJ',null,'28466095000152');
-
 select * from PESSOA;
 
 INSERT INTO CONTA VALUES (1, 'CONTA 1', 'PF', 'M', 'A', '1');
