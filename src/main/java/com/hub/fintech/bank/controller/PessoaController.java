@@ -46,18 +46,6 @@ public class PessoaController {
     }
 
     // Save
-/*    @PutMapping(value = "/save/{pessoa}", produces = "application/text")
-    public @ResponseBody
-    String savePessoa(@Valid @RequestBody Pessoa pessoa) {
-        pessoaService.save(pessoa);
-        if (pessoa.getContaId() == null){
-            logger.warn("PESSOA_ID: "+pessoa.getId()+" não possui Conta associada."+" CONTA_ID: "+pessoa.getContaId());
-            return "PESSOA_ID: "+pessoa.getId()+". Não possui Conta associada. Pessoa Salva com Sucesso.";
-        }
-        return "Pessoa Salva com Sucesso.";
-    }
-*/
-    // Save
     public @RequestMapping(method = RequestMethod.PUT, value = "/save/{pessoa}", produces = "application/text")
     String savePessoa(@Valid @RequestBody Pessoa pessoa,
                       @RequestParam(name = "id") Long id, Model model) {
