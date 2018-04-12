@@ -20,11 +20,11 @@ public class Pessoa implements Serializable {
     @Column(name = "TIPO_PESSOA")
     private TipoPessoaEnum pessoaTipo;
 
-    @JoinColumn(name = "CPF")
-    private String cpf;
+    @Column(name = "CPF")
+    private Long cpf;
 
     @JoinColumn(name = "CNPJ")
-    private String cnpj;
+    private Long cnpj;
 
     @JoinColumn(name = "CONTA_ID")
     private Long contaId;
@@ -45,19 +45,19 @@ public class Pessoa implements Serializable {
         this.pessoaTipo = pessoaTipo;
     }
 
-    public String getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
-    public String getCnpj() {
+    public Long getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(String cnpj) {
+    public void setCnpj(Long cnpj) {
         this.cnpj = cnpj;
     }
 

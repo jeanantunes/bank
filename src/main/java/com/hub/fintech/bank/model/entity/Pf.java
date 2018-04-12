@@ -3,6 +3,7 @@ package com.hub.fintech.bank.model.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Copyright JotaIT Services
@@ -20,7 +21,7 @@ public class Pf  extends Pessoa implements Serializable {
     private String nome;
 
     @Column(name = "CPF")
-    private String cpf;
+    private Long cpf;
 
     @Column(name = "DATA_NASCIMENTO")
     private Date dataNasc;
@@ -41,19 +42,19 @@ public class Pf  extends Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public Date getDataNasc() {
         return dataNasc;
     }
 
     public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
+    }
+
+    public Long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
     }
 }

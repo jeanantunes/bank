@@ -2,6 +2,7 @@ package com.hub.fintech.bank.model.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Copyright JotaIT Services
@@ -22,7 +23,7 @@ public class Pj extends Pessoa implements Serializable {
     private String nomeFantasia;
 
     @Column(name = "CNPJ")
-    private String cnpj;
+    private Long cnpj;
 
     public Long getId() {
         return id;
@@ -48,11 +49,11 @@ public class Pj extends Pessoa implements Serializable {
         this.nomeFantasia = nomeFantasia;
     }
 
-    public String getCnpj() {
+    public Long getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(String cnpj) {
+    public void setCnpj(Long cnpj) {
         this.cnpj = cnpj;
     }
 }
