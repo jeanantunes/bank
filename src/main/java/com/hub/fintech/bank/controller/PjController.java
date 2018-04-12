@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/pj")
 public class PjController {
 
     @Autowired
@@ -24,13 +24,13 @@ public class PjController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //List
-    @GetMapping("/pj/list")
+    @GetMapping("/list")
     public List<Pj> getAllPj() {
         return pjService.findAll();
     }
 
     // Save
-    @PutMapping(value = "/pj/save/{pj}", produces = "application/json")
+    @PutMapping(value = "/save/{pj}", produces = "application/json")
     public @ResponseBody
     Pj savePj(@Valid @RequestBody Pj pj) {
         pjService.save(pj);
@@ -38,14 +38,14 @@ public class PjController {
     }
 
     // Find
-    @PostMapping(value = "/pj/find/{id}", produces = "application/json")
+    @PostMapping(value = "/find/{id}", produces = "application/json")
     public @ResponseBody
     Pj getPjById(@PathVariable(value = "id") Long id) {
         return pjService.findById(id);
     }
 
     // Update
-    @PutMapping(value = "/pj/update/{id}", produces = "application/json")
+    @PutMapping(value = "/update/{id}", produces = "application/json")
     public @ResponseBody
     Pj updatePj(@PathVariable(value = "id") Long id,
                 @Valid @RequestBody Pj pjDetails) {
@@ -60,7 +60,7 @@ public class PjController {
     }
 
     // Delete
-    @DeleteMapping("/pj/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deletePj(@PathVariable(value = "id") Long id) {
         Pj pj = pjService.findById(id);
         if (pj != null) {
