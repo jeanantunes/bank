@@ -1,6 +1,9 @@
 package com.hub.fintech.bank.controller;
 
+import com.hub.fintech.bank.model.entity.Pessoa;
 import com.hub.fintech.bank.model.entity.Pf;
+import com.hub.fintech.bank.model.enums.TipoPessoaEnum;
+import com.hub.fintech.bank.service.PessoaService;
 import com.hub.fintech.bank.service.PfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +24,9 @@ public class PfController {
     @Autowired
     private PfService pfService;
 
+    @Autowired
+    private PessoaService pessoaService;
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //List
@@ -37,6 +43,18 @@ public class PfController {
     @PutMapping(value = "/save/{pf}", produces = "application/text")
     public @ResponseBody
     String savePf(@Valid @RequestBody Pf pf) {
+
+        pfService.save(pf);
+
+        Pessoa pessoa = pfService.findById(pf.getId());
+        ((Pf) pessoa).setDataNasc(pf.getDataNasc());
+        ((Pf) pessoa).setNome(pf.getNome());
+        pessoa.setCpf(pf.getCpf());
+        pessoa.setPessoaTipo(TipoPessoaEnum.CPF);
+        pessoa.setContaId(pf.getId());
+
+        pessoaService.save(pessoa);
+
         if (pf.getCpf() != null || pf.getDataNasc() != null || pf.getNome() != null) {
             pfService.save(pf);
             logger.info("PF Salvo: " + pf.getNome() + ", " + pf.getDataNasc() + ", " + pf.getCpf() + "");

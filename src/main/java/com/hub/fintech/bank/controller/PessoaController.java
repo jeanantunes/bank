@@ -3,17 +3,16 @@ package com.hub.fintech.bank.controller;
 import com.hub.fintech.bank.model.entity.Pessoa;
 import com.hub.fintech.bank.model.entity.Pf;
 import com.hub.fintech.bank.model.entity.Pj;
+import com.hub.fintech.bank.service.ContaService;
 import com.hub.fintech.bank.service.PessoaService;
 import com.hub.fintech.bank.service.PfService;
 import com.hub.fintech.bank.service.PjService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,6 +32,9 @@ public class PessoaController {
     @Autowired
     private PjService pjService;
 
+    @Autowired
+    private ContaService contaService;
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //List
@@ -48,41 +50,22 @@ public class PessoaController {
     // Save
     public @RequestMapping(method = RequestMethod.PUT, value = "/save/{pessoa}", produces = "application/text")
     String savePessoa(@Valid @RequestBody Pessoa pessoa,
-                      @RequestParam(name = "id") Long id, Model model) {
-
-        model.addAttribute("id", id);
+                      @RequestParam(name = "id") Long id) {
 
         Pf pf = pfService.findById(id);
         Pj pj = pjService.findById(id);
 
-        if (pf != null) {
-            List<Pf> cpf = Collections.singletonList(pf);
-            for (Pf pessoaFisica : cpf) {
-                pessoaFisica.getId();
-                pessoaFisica.getNome();
-                pessoaFisica.getDataNasc();
-                pessoaFisica.getCpf();
-                logger.info("CPF: " + cpf + ". Encontrado com Sucesso.");
-            }
-        } else if (pj != null) {
-            List<Pj> cnpj = Collections.singletonList(pj);
-            for (Pj pessoaJuridica : cnpj) {
-                pessoaJuridica.getId();
-                pessoaJuridica.getRazaoSocial();
-                pessoaJuridica.getNomeFantasia();
-                pessoaJuridica.getCnpj();
-                logger.info("CNPJ: " + cnpj + ". Encontrado com Sucesso");
-            }
-        } else {
-            logger.error("ID: "+id+". PF/PJ não Cadastrada. Obrigatório.");
-            return "ID: "+id+". PF/PJ não Cadastrada. Obrigatório.";
+        if (pf == null && pj == null){
+            logger.error("PF e/ou PJ não Cadastrada. Obrigatório.");
+            return "PF e/ou PJ não Cadastrada. Obrigatório.";
         }
-        pessoaService.save(pessoa);
+
         if (pessoa.getContaId() == null) {
-            logger.warn("PESSOA_ID: " + pessoa.getId() + " não possui Conta associada." + " CONTA_ID: " + pessoa.getContaId());
-            return "PESSOA_ID: " + pessoa.getId() + ". Não possui Conta associada. Pessoa Salva com Sucesso.";
+            logger.warn("Não possui Conta associada." + " CONTA_ID: " + pessoa.getContaId());
+            return "Não possui Conta associada. Crie sua Conta!!!";
+        } else {
+            return "Pessoa Salva com Sucesso. Salve sua Conta!!!";
         }
-        return "Pessoa Salva com Sucesso.";
     }
 
     // Find

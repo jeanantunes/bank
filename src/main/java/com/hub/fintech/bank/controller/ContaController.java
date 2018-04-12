@@ -51,11 +51,6 @@ public class ContaController {
         }else {
         conta.setPessoaId(pessoaId);
         if (p.getCpf() != null || p.getCnpj() != null) {
-            p.setPessoaTipo(conta.getPessoaTipo());
-            p.setCpf(conta.getCpf());
-            p.setCnpj(conta.getCnpj());
-            p.setContaId(pessoaId);
-            pessoaService.save(p);
             conta.setContaId(pessoaId);
             contaService.save(conta);
             logger.info("PESSOA_ID: "+pessoaId+" CONTA_ID: "+conta.getId()+". Conta criada com Sucesso.");
