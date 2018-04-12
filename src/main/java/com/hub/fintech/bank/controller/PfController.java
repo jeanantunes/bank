@@ -69,33 +69,39 @@ public class PfController {
     @PostMapping(value = "/find/{id}", produces = "application/json")
     public @ResponseBody
     Pf getPfById(@PathVariable(value = "id") Long id) {
-        return pfService.findById(id);
+        Pf pf = pfService.findById(id);
+        if (pf == null) {
+            logger.error("ID: " + id + " não Localizado.");
+        }
+        return pf;
     }
 
     // Update
-    @PutMapping(value = "/update/{id}", produces = "application/json")
+    @PutMapping(value = "/update/{id}", produces = "application/text")
     public @ResponseBody
-    Pf updatePf(@PathVariable(value = "id") Long id,
-                @Valid @RequestBody Pf pfDetails) {
-
+    String updatePf(@PathVariable(value = "id") Long id,
+                        @Valid @RequestBody Pf pfDetails) {
         Pf pf = pfService.findById(id);
-        if (pf != null) {
-            pfService.save(pfDetails);
+        if (pf == null) {
+            logger.error("ID: " + id + ". Não Localizado.");
+            return "ID: " + id + ". Não Localizado.";
         } else {
-            System.out.println("Pessoa Física não encontrada");
+            pfService.save(pfDetails);
+            logger.info("Pessoa Física atualizada com Sucesso.");
         }
-        return pfDetails;
+        return "Atualizado com Sucesso.";
     }
 
     // Delete
     @DeleteMapping("/delete/{id}")
     public String deletePf(@PathVariable(value = "id") Long id) {
         Pf pf = pfService.findById(id);
-        if (pf != null) {
-            pfService.delete(id);
-            return "DELETE realizado com Sucesso.";
+        if (pf == null) {
+            logger.error("ID: " + id + ". Não Localizado.");
+            return "Pessoa Jurídica não localizada.";
         } else {
-            return "Pessoa Fícica não localizada";
+            pfService.delete(pf);
+            return "Excluido com Sucesso.";
         }
     }
 }
