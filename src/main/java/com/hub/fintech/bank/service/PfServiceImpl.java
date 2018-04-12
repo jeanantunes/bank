@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Service
-public class PfServiceImpl implements PfService {
+public abstract class PfServiceImpl implements PfService {
 
     @Autowired
     PfRepository pfRepository;

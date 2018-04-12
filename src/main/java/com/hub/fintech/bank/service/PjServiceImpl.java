@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Service
-public class PjServiceImpl implements PjService {
+public abstract class PjServiceImpl implements PjService {
 
     @Autowired
     PjRepository pjRepository;
