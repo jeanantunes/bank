@@ -8,11 +8,11 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "PJ")
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "CNPJ")})
 public class Pj extends Pessoa implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "RAZAO_SOCIAL")
@@ -21,7 +21,7 @@ public class Pj extends Pessoa implements Serializable {
     @Column(name = "NOME_FANTASIA")
     private String nomeFantasia;
 
-    @Column(name = "CNPJ")
+    @JoinColumn(name = "CNPJ")
     private Long cnpj;
 
     Pj() {

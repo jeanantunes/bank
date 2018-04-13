@@ -9,17 +9,17 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "PF")
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "CPF")})
 public class Pf extends Pessoa implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "NOME")
     private String nome;
 
-    @Column(name = "CPF")
+    @JoinColumn(name = "CPF")
     private Long cpf;
 
     @Column(name = "DATA_NASCIMENTO")

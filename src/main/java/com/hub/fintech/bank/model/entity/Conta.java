@@ -12,11 +12,11 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "CONTA")
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "CONTA_ID")})
 public class Conta extends Pessoa implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String nome;
@@ -32,6 +32,9 @@ public class Conta extends Pessoa implements Serializable {
 
     @JoinColumn(name = "PESSOA_ID")
     private Long pessoaId;
+
+    @JoinColumn(name = "CONTA_ID")
+    private Long contaId;
 
     Conta() {
     }
@@ -82,5 +85,15 @@ public class Conta extends Pessoa implements Serializable {
 
     public void setPessoaId(Long pessoaId) {
         this.pessoaId = pessoaId;
+    }
+
+    @Override
+    public Long getContaId() {
+        return contaId;
+    }
+
+    @Override
+    public void setContaId(Long contaId) {
+        this.contaId = contaId;
     }
 }

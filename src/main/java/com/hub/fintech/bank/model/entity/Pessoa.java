@@ -5,16 +5,18 @@ import com.hub.fintech.bank.model.enums.TipoPessoaEnum;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
 /**
  * @Copyright JotaIT Services
  */
 
 @Entity
-@Table(name = "PESSOA")
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "CPF"),
+        @UniqueConstraint(columnNames = "CNPJ")})
 public class Pessoa implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "TIPO_PESSOA")
