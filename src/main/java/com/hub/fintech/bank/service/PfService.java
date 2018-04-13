@@ -17,8 +17,6 @@ public interface PfService extends JpaRepository<Pf, Long> {
 
     Pf findById(Long id);
 
-    String deleteById(Long id);
-
     List<Pf> findAll();
 
     void delete(Long id);

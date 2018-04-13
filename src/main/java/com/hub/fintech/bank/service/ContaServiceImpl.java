@@ -34,7 +34,7 @@ public class ContaServiceImpl implements ContaService {
 
     @Override
     public String deleteById(Long id) {
-        return "Deletado com Sucesso";
+        return null;
     }
 
     @Override
@@ -44,17 +44,17 @@ public class ContaServiceImpl implements ContaService {
 
     @Override
     public List<Conta> findAll(Sort sort) {
-        return contaRepository.findAll(sort);
+        return null;
     }
 
     @Override
     public Page<Conta> findAll(Pageable pageable) {
-        return contaRepository.findAll(pageable);
+        return null;
     }
 
     @Override
     public List<Conta> findAll(Iterable<Long> iterable) {
-        return contaRepository.findAll(iterable);
+        return null;
     }
 
     @Override
@@ -64,17 +64,17 @@ public class ContaServiceImpl implements ContaService {
 
     @Override
     public <S extends Conta> List<S> save(Iterable<S> iterable) {
-        return contaRepository.save(iterable);
+        return null;
     }
 
     @Override
     public Conta findOne(Long aLong) {
-        return contaRepository.findOne(aLong);
+        return null;
     }
 
     @Override
     public boolean exists(Long aLong) {
-        return contaRepository.exists(aLong);
+        return false;
     }
 
     @Override
@@ -84,7 +84,7 @@ public class ContaServiceImpl implements ContaService {
 
     @Override
     public <S extends Conta> S saveAndFlush(S s) {
-        return contaRepository.saveAndFlush(s);
+        return null;
     }
 
     @Override
@@ -99,42 +99,42 @@ public class ContaServiceImpl implements ContaService {
 
     @Override
     public Conta getOne(Long aLong) {
-        return contaRepository.getOne(aLong);
+        return null;
     }
 
     @Override
     public <S extends Conta> S findOne(Example<S> example) {
-        return contaRepository.findOne(example);
+        return null;
     }
 
     @Override
     public <S extends Conta> List<S> findAll(Example<S> example) {
-        return contaRepository.findAll(example);
+        return null;
     }
 
     @Override
     public <S extends Conta> List<S> findAll(Example<S> example, Sort sort) {
-        return contaRepository.findAll(example, sort);
+        return null;
     }
 
     @Override
     public <S extends Conta> Page<S> findAll(Example<S> example, Pageable pageable) {
-        return contaRepository.findAll(example, pageable);
+        return null;
     }
 
     @Override
     public <S extends Conta> long count(Example<S> example) {
-        return contaRepository.count(example);
+        return 0;
     }
 
     @Override
     public <S extends Conta> boolean exists(Example<S> example) {
-        return contaRepository.exists(example);
+        return false;
     }
 
     @Override
     public void delete(Long id) {
-        contaRepository.delete(id);
+
     }
 
     @Override
@@ -144,11 +144,11 @@ public class ContaServiceImpl implements ContaService {
 
     @Override
     public void delete(Iterable<? extends Conta> iterable) {
-        contaRepository.delete(iterable);
+
     }
 
     @Override
     public void deleteAll() {
-        contaRepository.deleteAll();
+
     }
 }

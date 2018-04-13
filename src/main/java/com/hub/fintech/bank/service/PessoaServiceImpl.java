@@ -44,17 +44,17 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public List<Pessoa> findAll(Sort sort) {
-        return pessoaRepository.findAll(sort);
+        return null;
     }
 
     @Override
     public Page<Pessoa> findAll(Pageable pageable) {
-        return pessoaRepository.findAll(pageable);
+        return null;
     }
 
     @Override
     public List<Pessoa> findAll(Iterable<Long> iterable) {
-        return pessoaRepository.findAll(iterable);
+        return null;
     }
 
     @Override
@@ -63,18 +63,23 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
+    public void delete(Long aLong) {
+
+    }
+
+    @Override
     public <S extends Pessoa> List<S> save(Iterable<S> iterable) {
-        return pessoaRepository.save(iterable);
+        return null;
     }
 
     @Override
     public Pessoa findOne(Long aLong) {
-        return pessoaRepository.findOne(aLong);
+        return null;
     }
 
     @Override
     public boolean exists(Long aLong) {
-        return pessoaRepository.exists(aLong);
+        return false;
     }
 
     @Override
@@ -84,7 +89,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public <S extends Pessoa> S saveAndFlush(S s) {
-        return pessoaRepository.saveAndFlush(s);
+        return null;
     }
 
     @Override
@@ -99,42 +104,37 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public Pessoa getOne(Long aLong) {
-        return pessoaRepository.getOne(aLong);
+        return null;
     }
 
     @Override
     public <S extends Pessoa> S findOne(Example<S> example) {
-        return pessoaRepository.findOne(example);
+        return null;
     }
 
     @Override
     public <S extends Pessoa> List<S> findAll(Example<S> example) {
-        return pessoaRepository.findAll(example);
+        return null;
     }
 
     @Override
     public <S extends Pessoa> List<S> findAll(Example<S> example, Sort sort) {
-        return pessoaRepository.findAll(example, sort);
+        return null;
     }
 
     @Override
     public <S extends Pessoa> Page<S> findAll(Example<S> example, Pageable pageable) {
-        return pessoaRepository.findAll(example, pageable);
+        return null;
     }
 
     @Override
     public <S extends Pessoa> long count(Example<S> example) {
-        return pessoaRepository.count(example);
+        return 0;
     }
 
     @Override
     public <S extends Pessoa> boolean exists(Example<S> example) {
-        return pessoaRepository.exists(example);
-    }
-
-    @Override
-    public void delete(Long id) {
-        pessoaRepository.delete(id);
+        return false;
     }
 
     @Override
@@ -144,11 +144,11 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public void delete(Iterable<? extends Pessoa> iterable) {
-        pessoaRepository.delete(iterable);
+
     }
 
     @Override
     public void deleteAll() {
-        pessoaRepository.deleteAll();
+
     }
 }

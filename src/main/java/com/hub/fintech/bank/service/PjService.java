@@ -17,8 +17,6 @@ public interface PjService extends JpaRepository<Pj, Long> {
 
     Pj findById(Long id);
 
-    String deleteById(Long id);
-
     List<Pj> findAll();
 
     void delete(Long id);

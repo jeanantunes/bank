@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Service
-public abstract class PfServiceImpl implements PfService {
+public class PfServiceImpl implements PfService {
 
     @Autowired
     PfRepository pfRepository;
@@ -33,28 +33,23 @@ public abstract class PfServiceImpl implements PfService {
     }
 
     @Override
-    public String deleteById(Long id) {
-        return "Deletado com Sucesso";
-    }
-
-    @Override
     public List<Pf> findAll() {
         return pfRepository.findAll();
     }
 
     @Override
     public List<Pf> findAll(Sort sort) {
-        return pfRepository.findAll(sort);
+        return null;
     }
 
     @Override
     public Page<Pf> findAll(Pageable pageable) {
-        return pfRepository.findAll(pageable);
+        return null;
     }
 
     @Override
     public List<Pf> findAll(Iterable<Long> iterable) {
-        return pfRepository.findAll(iterable);
+        return null;
     }
 
     @Override
@@ -64,17 +59,17 @@ public abstract class PfServiceImpl implements PfService {
 
     @Override
     public <S extends Pf> List<S> save(Iterable<S> iterable) {
-        return pfRepository.save(iterable);
+        return null;
     }
 
     @Override
     public Pf findOne(Long aLong) {
-        return pfRepository.findOne(aLong);
+        return null;
     }
 
     @Override
     public boolean exists(Long aLong) {
-        return pfRepository.exists(aLong);
+        return false;
     }
 
     @Override
@@ -84,7 +79,7 @@ public abstract class PfServiceImpl implements PfService {
 
     @Override
     public <S extends Pf> S saveAndFlush(S s) {
-        return pfRepository.saveAndFlush(s);
+        return null;
     }
 
     @Override
@@ -99,42 +94,42 @@ public abstract class PfServiceImpl implements PfService {
 
     @Override
     public Pf getOne(Long aLong) {
-        return pfRepository.getOne(aLong);
+        return null;
     }
 
     @Override
     public <S extends Pf> S findOne(Example<S> example) {
-        return pfRepository.findOne(example);
+        return null;
     }
 
     @Override
     public <S extends Pf> List<S> findAll(Example<S> example) {
-        return pfRepository.findAll(example);
+        return null;
     }
 
     @Override
     public <S extends Pf> List<S> findAll(Example<S> example, Sort sort) {
-        return pfRepository.findAll(example, sort);
+        return null;
     }
 
     @Override
     public <S extends Pf> Page<S> findAll(Example<S> example, Pageable pageable) {
-        return pfRepository.findAll(example, pageable);
+        return null;
     }
 
     @Override
     public <S extends Pf> long count(Example<S> example) {
-        return pfRepository.count(example);
+        return 0;
     }
 
     @Override
     public <S extends Pf> boolean exists(Example<S> example) {
-        return pfRepository.exists(example);
+        return false;
     }
 
     @Override
     public void delete(Long id) {
-        pfRepository.delete(id);
+
     }
 
     @Override
@@ -144,11 +139,11 @@ public abstract class PfServiceImpl implements PfService {
 
     @Override
     public void delete(Iterable<? extends Pf> iterable) {
-        pfRepository.delete(iterable);
+
     }
 
     @Override
     public void deleteAll() {
-        pfRepository.deleteAll();
+
     }
 }
