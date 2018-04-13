@@ -3,7 +3,6 @@ package com.hub.fintech.bank.controller;
 import com.hub.fintech.bank.model.entity.Pessoa;
 import com.hub.fintech.bank.model.entity.Pf;
 import com.hub.fintech.bank.model.entity.Pj;
-import com.hub.fintech.bank.service.ContaService;
 import com.hub.fintech.bank.service.PessoaService;
 import com.hub.fintech.bank.service.PfService;
 import com.hub.fintech.bank.service.PjService;
@@ -12,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -32,9 +30,6 @@ public class PessoaController {
     @Autowired
     private PjService pjService;
 
-    @Autowired
-    private ContaService contaService;
-
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //List
@@ -49,13 +44,13 @@ public class PessoaController {
 
     // Save
     public @RequestMapping(method = RequestMethod.PUT, value = "/save/{pessoa}", produces = "application/text")
-    String savePessoa(@Valid @RequestBody Pessoa pessoa,
+    String savePessoa(@RequestBody Pessoa pessoa,
                       @RequestParam(name = "id") Long id) {
 
         Pf pf = pfService.findById(id);
         Pj pj = pjService.findById(id);
 
-        if (pf == null && pj == null){
+        if (pf == null && pj == null) {
             logger.error("PF e/ou PJ não Cadastrada. Obrigatório.");
             return "PF e/ou PJ não Cadastrada. Obrigatório.";
         }
@@ -79,22 +74,6 @@ public class PessoaController {
         return p;
     }
 
-    // Update
-    @PutMapping(value = "/update/{id}", produces = "application/text")
-    public @ResponseBody
-    String updatePessoa(@PathVariable(value = "id") Long id,
-                        @Valid @RequestBody Pessoa pessoaDetails) {
-        Pessoa p = pessoaService.findById(id);
-        if (p == null) {
-            logger.error("ID: " + id + ". Não Localizado.");
-            return "ID: " + id + ". Não Localizado.";
-        } else {
-            pessoaService.save(pessoaDetails);
-            logger.info("Pessoa atualizada com Sucesso.");
-        }
-        return "Atualizado com Sucesso.";
-    }
-
     // Delete
     @DeleteMapping("/delete/{id}")
     public String deletePessoa(@PathVariable(value = "id") Long id) {
@@ -103,7 +82,14 @@ public class PessoaController {
             logger.error("ID: " + id + ". Não Localizado.");
             return "Pessoa não localizada.";
         } else {
-            pessoaService.delete(p);
+            if (p.getCpf() != null) {
+                pessoaService.delete(p.getId());
+                pfService.delete(p.getId());
+            }
+            if (p.getCnpj() != null) {
+                pessoaService.delete(p.getId());
+                pfService.delete(p.getId());
+            }
             return "Excluido com Sucesso.";
         }
     }

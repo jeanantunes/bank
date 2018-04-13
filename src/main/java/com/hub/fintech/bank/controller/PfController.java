@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ public class PfController {
     // Save
     @PutMapping(value = "/save/{pf}", produces = "application/text")
     public @ResponseBody
-    String savePf(@Valid @RequestBody Pf pf) {
+    String savePf(@RequestBody Pf pf) {
 
         pfService.save(pf);
 
@@ -51,12 +50,9 @@ public class PfController {
         ((Pf) pessoa).setNome(pf.getNome());
         pessoa.setCpf(pf.getCpf());
         pessoa.setPessoaTipo(TipoPessoaEnum.CPF);
-        pessoa.setContaId(pf.getId());
-
         pessoaService.save(pessoa);
 
         if (pf.getCpf() != null || pf.getDataNasc() != null || pf.getNome() != null) {
-            pfService.save(pf);
             logger.info("PF Salvo: " + pf.getNome() + ", " + pf.getDataNasc() + ", " + pf.getCpf() + "");
             return "Salvo com Sucesso.";
         } else {
@@ -80,7 +76,7 @@ public class PfController {
     @PutMapping(value = "/update/{id}", produces = "application/text")
     public @ResponseBody
     String updatePf(@PathVariable(value = "id") Long id,
-                        @Valid @RequestBody Pf pfDetails) {
+                    @RequestBody Pf pfDetails) {
         Pf pf = pfService.findById(id);
         if (pf == null) {
             logger.error("ID: " + id + ". Não Localizado.");
@@ -98,7 +94,7 @@ public class PfController {
         Pf pf = pfService.findById(id);
         if (pf == null) {
             logger.error("ID: " + id + ". Não Localizado.");
-            return "Pessoa Jurídica não localizada.";
+            return "Pessoa Física não localizada.";
         } else {
             pfService.delete(pf);
             return "Excluido com Sucesso.";

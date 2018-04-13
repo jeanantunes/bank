@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -33,32 +32,32 @@ public class ContaController {
     @GetMapping("/list")
     public List<Conta> getAllContas() {
         List<Conta> c = contaService.findAll();
-        if (c.isEmpty()){
-            logger.error("Lista de Contas vazia: "+c);
+        if (c.isEmpty()) {
+            logger.error("Lista de Contas vazia: " + c);
         }
         return c;
     }
 
     // Save
     public @RequestMapping(method = RequestMethod.PUT, value = "/save/{conta}", produces = "application/text")
-    String saveConta(@Valid @RequestBody Conta conta,
-                    @RequestParam(name = "pessoaId") Long pessoaId, Model model) {
+    String saveConta(@RequestBody Conta conta,
+                     @RequestParam(name = "pessoaId") Long pessoaId, Model model) {
         model.addAttribute("pessoaId", pessoaId);
         Pessoa p = pessoaService.findById(pessoaId);
-        if (p == null){
-            logger.error("PESSOA_ID: "+pessoaId+". Não Localizado. Obrigatório associar Pessoa a Conta.");
-            return "PESSOA_ID: "+pessoaId+". Não Localizado. Obrigatório associar Pessoa a Conta.";
-        }else {
-        conta.setPessoaId(pessoaId);
-        if (p.getCpf() != null || p.getCnpj() != null) {
-            conta.setContaId(pessoaId);
-            contaService.save(conta);
-            logger.info("PESSOA_ID: "+pessoaId+" CONTA_ID: "+conta.getId()+". Conta criada com Sucesso.");
-            return "Conta criada com Sucesso.";
-            }else {
-            logger.error("Pessoa CPF ou CNPJ obrigatório.");
-            return "Pessoa CPF ou CNPJ Obrigatório. Atualize antes de associar a Conta.";
-        }
+        if (p == null) {
+            logger.error("PESSOA_ID: " + pessoaId + ". Não Localizado. Obrigatório associar Pessoa a Conta.");
+            return "PESSOA_ID: " + pessoaId + ". Não Localizado. Obrigatório associar Pessoa a Conta.";
+        } else {
+            conta.setPessoaId(pessoaId);
+            if (p.getCpf() != null || p.getCnpj() != null) {
+                conta.setContaId(pessoaId);
+                contaService.save(conta);
+                logger.info("PESSOA_ID: " + pessoaId + " CONTA_ID: " + conta.getId() + ". Conta criada com Sucesso.");
+                return "Conta criada com Sucesso.";
+            } else {
+                logger.error("Pessoa CPF ou CNPJ obrigatório.");
+                return "Pessoa CPF ou CNPJ Obrigatório. Atualize antes de associar a Conta.";
+            }
         }
     }
 
@@ -67,8 +66,8 @@ public class ContaController {
     public @ResponseBody
     Conta getContaById(@PathVariable(value = "id") Long id) {
         Conta c = contaService.findById(id);
-        if (c == null){
-            logger.error("ID: "+id+" não Localizado.");
+        if (c == null) {
+            logger.error("ID: " + id + " não Localizado.");
         }
         return c;
     }
@@ -77,11 +76,11 @@ public class ContaController {
     @PutMapping(value = "/update/{id}", produces = "application/text")
     public @ResponseBody
     String updateConta(@PathVariable(value = "id") Long id,
-                      @Valid @RequestBody Conta contaDetails) {
+                       @RequestBody Conta contaDetails) {
         Conta c = contaService.findById(id);
         if (c == null) {
-            logger.error("ID: "+id+". Não Localizado.");
-            return "ID: "+id+". Não Localizado.";
+            logger.error("ID: " + id + ". Não Localizado.");
+            return "ID: " + id + ". Não Localizado.";
         } else {
             contaService.save(contaDetails);
             logger.info("Conta atualizada com Sucesso.");
@@ -94,7 +93,7 @@ public class ContaController {
     public String deleteConta(@PathVariable(value = "id") Long id) {
         Conta c = contaService.findById(id);
         if (c == null) {
-            logger.error("ID: "+id+". Não Localizado.");
+            logger.error("ID: " + id + ". Não Localizado.");
             return "Conta não localizada.";
         } else {
             contaService.delete(c);

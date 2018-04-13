@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ public class PjController {
     // Save
     @PutMapping(value = "/save/{pj}", produces = "application/text")
     public @ResponseBody
-    String savePj(@Valid @RequestBody Pj pj) {
+    String savePj(@RequestBody Pj pj) {
 
         pjService.save(pj);
 
@@ -51,12 +50,9 @@ public class PjController {
         pj.setNomeFantasia(pj.getNomeFantasia());
         pessoa.setCnpj(pj.getCnpj());
         pessoa.setPessoaTipo(TipoPessoaEnum.CNPJ);
-        pessoa.setContaId(pj.getId());
-
         pessoaService.save(pessoa);
 
         if (pj.getCnpj() != null || pj.getRazaoSocial() != null || pj.getNomeFantasia() != null) {
-            pjService.save(pj);
             logger.info("Pj Salvo: " + pj.getCnpj() + ", " + pj.getNomeFantasia() + ", " + pj.getRazaoSocial() + "");
             return "Salvo com Sucesso.";
         } else {
@@ -80,7 +76,7 @@ public class PjController {
     @PutMapping(value = "/update/{id}", produces = "application/text")
     public @ResponseBody
     String updatePj(@PathVariable(value = "id") Long id,
-                    @Valid @RequestBody Pj pjDetails) {
+                    @RequestBody Pj pjDetails) {
         Pj pj = pjService.findById(id);
         if (pj == null) {
             logger.error("ID: " + id + ". Não Localizado.");
