@@ -1,6 +1,5 @@
 package com.hub.fintech.bank.model.entity;
 
-import com.hub.fintech.bank.controller.PessoaController;
 import com.hub.fintech.bank.model.enums.StatusEnum;
 import com.hub.fintech.bank.model.enums.TipoContaEnum;
 import com.hub.fintech.bank.model.enums.TipoPessoaEnum;
@@ -33,6 +32,9 @@ public class Conta extends Pessoa implements Serializable {
 
     @JoinColumn(name = "PESSOA_ID")
     private Long pessoaId;
+
+    Conta() {
+    }
 
     public Long getId() {
         return id;

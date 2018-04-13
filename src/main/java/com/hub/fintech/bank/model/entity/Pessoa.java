@@ -20,7 +20,7 @@ public class Pessoa implements Serializable {
     @Column(name = "TIPO_PESSOA")
     private TipoPessoaEnum pessoaTipo;
 
-    @Column(name = "CPF")
+    @JoinColumn(name = "CPF")
     private Long cpf;
 
     @JoinColumn(name = "CNPJ")
@@ -28,6 +28,9 @@ public class Pessoa implements Serializable {
 
     @JoinColumn(name = "CONTA_ID")
     private Long contaId;
+
+    Pessoa() {
+    }
 
     public Long getId() {
         return id;

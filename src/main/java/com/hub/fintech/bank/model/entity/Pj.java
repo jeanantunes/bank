@@ -2,7 +2,6 @@ package com.hub.fintech.bank.model.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @Copyright JotaIT Services
@@ -24,6 +23,9 @@ public class Pj extends Pessoa implements Serializable {
 
     @Column(name = "CNPJ")
     private Long cnpj;
+
+    Pj() {
+    }
 
     public Long getId() {
         return id;

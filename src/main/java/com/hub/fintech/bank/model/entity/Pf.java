@@ -3,7 +3,6 @@ package com.hub.fintech.bank.model.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @Copyright JotaIT Services
@@ -11,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "PF")
-public class Pf  extends Pessoa implements Serializable {
+public class Pf extends Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +24,9 @@ public class Pf  extends Pessoa implements Serializable {
 
     @Column(name = "DATA_NASCIMENTO")
     private Date dataNasc;
+
+    Pf() {
+    }
 
     public Long getId() {
         return id;
