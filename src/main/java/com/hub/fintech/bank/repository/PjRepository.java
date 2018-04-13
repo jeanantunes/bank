@@ -1,15 +1,48 @@
 package com.hub.fintech.bank.repository;
 
 import com.hub.fintech.bank.model.entity.Pj;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * @Copyright JotaIT Services
  */
 
 @Repository
-public interface PjRepository extends JpaRepository<Pj, Long> {
+@Transactional
+public class PjRepository {
 
-    Pj findById(Long id);
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public void save(Pj pj) {
+        entityManager.persist(pj);
+        return;
+    }
+
+    public void delete(Pj pj) {
+        if (entityManager.contains(pj))
+            entityManager.remove(pj);
+        else
+            entityManager.remove(entityManager.merge(pj));
+        return;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List findAll() {
+        return entityManager.createQuery("from Pj").getResultList();
+    }
+
+    public Pj findById(Long id) {
+        return entityManager.find(Pj.class, id);
+    }
+
+    public void update(Pj pj) {
+        entityManager.merge(pj);
+        return;
+    }
 }
